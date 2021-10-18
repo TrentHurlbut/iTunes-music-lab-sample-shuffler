@@ -1,11 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="main.js" defer></script>
-  <title>Music Search</title>
-</head>
-<body>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="main.js" defer></script>
+        <title>Music Search</title>
+    </head>
+    <body>
+        <h1>Music Discovery Lab</h1>
+        <div id="play-box"></div>
+        <div id="discovery-field">
+            <form id="discovery-form">
+                <input
+                    id="discovery-text"
+                    type="text"
+                    placeholder="Whatcha feelin'?"
+                    required
+                />
+            </form>
+            <button id="search" type="submit">Let's Go!</button>
+        </div>
+        <div id="results-field">
+            <h1>Search Results:</h1>
+        </div>
+    </body>
 </html>
