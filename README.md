@@ -88,4 +88,4 @@ One hard part will be getting the song to play. Since you will be dynamically ge
         trackTimeMillis: 282653
         trackViewUrl: "https://music.apple.com/us/album/kickstart-my-heart/1242687530?i=1242687820&uo=4"
         wrapperType: "track"
-        [[Prototype]]: Object}
+        [[Prototype]]: Object} 

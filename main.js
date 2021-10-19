@@ -4,6 +4,12 @@ const searchButton = document.getElementById('search');
 
 const playBox = document.getElementById('play-box');
 
+const audioControls = document.getElementById('audio-station');
+
+const sourceAudio = audioControls.childNodes[0].nextElementSibling;
+
+const playButton = document.getElementById('play-button');
+
 searchButton.addEventListener('click', () => {
     let artistText = document.getElementById('discovery-text').value;
 
@@ -14,12 +20,13 @@ searchButton.addEventListener('click', () => {
         .then((data) => {
             let musicArr = data.results;
             for (let i = 0; i < 16; i++) {
+                let selector = Math.floor(Math.random() * 50);
                 resultsField.innerHTML += `
                 <div class="artist-card">
-                <img src=${musicArr[i].artworkUrl100}>
-                <p class='song-info'>${musicArr[i].artistName}</p>
-                <p class='song-info'>${musicArr[i].trackName}</p>
-                <button class='play' id='${musicArr[i].trackId}' value='${musicArr[i].previewUrl}'>Play Me!</button>
+                <img src=${musicArr[selector].artworkUrl100}>
+                <p class='song-info'>${musicArr[selector].artistName}</p>
+                <p class='song-info'>${musicArr[selector].trackName}</p>
+                <button class='play' id='${musicArr[selector].trackId}' value='${musicArr[selector].previewUrl}'>Play Me!</button>
                 </div>
                 `;
             }
@@ -28,10 +35,10 @@ searchButton.addEventListener('click', () => {
 
 resultsField.addEventListener('click', (e) => {
     console.log(e.target.value);
-    playBox.innerHTML = `
-    <audio controls>
-    <source src='${e.target.vlaue}'>
-    Your browser does not support HTML audio tags.
-    </audio>    
-    `;
+    audioControls.src = e.target.value;
+    audioControls.autoPlay = true;
+});
+
+playButton.addEventListener('click', () => {
+    audioControls.play();
 });
