@@ -3,29 +3,34 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic" />
+        <link rel="stylesheet" href="./styles.css" />
         <script src="main.js" defer></script>
-        <title>Music Search</title>
+        <title>Music Discovery Lab</title>
     </head>
-    <body>
-        <h1>Music Discovery Lab</h1>
-        <div id="play-box">
-            <audio id="audio-station" controls autoplay>
-                <source />
-            </audio>
-            <button id="play-button">PlayMe!</button>
+    <body class="root">
+        <div class="discover-box">
+            <h1>Music Discovery Lab</h1>
+            <div id="play-box">
+                <audio id="audio-station" controls autoplay>
+                    <source />
+                </audio>
+            </div>
+            <div id="discovery-field">
+                <form id="discovery-form">
+                    <input
+                        id="discovery-text"
+                        type="text"
+                        placeholder="Whatcha feelin'?"
+                        required
+                    />
+                </form>
+                <button id="search" type="submit">Let's Go!</button>
+            </div>
         </div>
-        <div id="discovery-field">
-            <form id="discovery-form">
-                <input
-                    id="discovery-text"
-                    type="text"
-                    placeholder="Whatcha feelin'?"
-                    required
-                />
-            </form>
-            <button id="search" type="submit">Let's Go!</button>
+        <div class="results-box">
+            <h1>Search Results:</h1>
+            <div id="results-field"></div>
         </div>
-        <h1>Search Results:</h1>
-        <div id="results-field"></div>
     </body>
 </html>

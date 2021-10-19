@@ -38,7 +38,3 @@ resultsField.addEventListener('click', (e) => {
     audioControls.src = e.target.value;
     audioControls.autoPlay = true;
 });
-
-playButton.addEventListener('click', () => {
-    audioControls.play();
-});
