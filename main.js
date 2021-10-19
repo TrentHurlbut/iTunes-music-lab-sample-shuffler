@@ -8,27 +8,47 @@ const audioControls = document.getElementById('audio-station');
 
 const playButton = document.getElementById('play-button');
 
-searchButton.addEventListener('click', () => {
-    let artistText = document.getElementById('discovery-text').value;
+document.getElementById('discovery-form').addEventListener(
+    'submit',
+    (e) => {
+        e.preventDefault();
 
-    fetch(
-        `https://itunes.apple.com/search?media=music&entity=song&term=${artistText}`
-    )
-        .then((response) => response.json())
-        .then((data) => {
-            let musicArr = data.results;
-            for (let i = 0; i < 16; i++) {
-                let selector = Math.floor(Math.random() * 50);
-                resultsField.innerHTML += `
-                <div class="artist card">
-                <img src=${musicArr[selector].artworkUrl100}>
-                <p class='song-info'>${musicArr[selector].artistName} </br> ${musicArr[selector].trackName}</p>
-                <button class='play' id='${musicArr[selector].trackId}' value='${musicArr[selector].previewUrl}'>Play Me!</button>
-                </div>
-                `;
-            }
-        });
-});
+        let artistText = document.getElementById('discovery-text').value;
+
+        fetch(
+            `https://itunes.apple.com/search?media=music&entity=song&term=${artistText}`
+        )
+            .then((response) => response.json())
+            .then((data) => {
+                let musicArr = data.results;
+                if (resultsField.innerHTML === '') {
+                    for (let i = 0; i < 16; i++) {
+                        let selector = Math.floor(Math.random() * 50);
+                        resultsField.innerHTML += `
+                    <div class="artist card">
+                    <img src=${musicArr[selector].artworkUrl100}>
+                    <p class='song-info'>${musicArr[selector].artistName} </br> ${musicArr[selector].trackName}</p>
+                    <button class='play' id='${musicArr[selector].trackId}' value='${musicArr[selector].previewUrl}'>Play Me!</button>
+                    </div>
+                    `;
+                    }
+                } else {
+                    resultsField.innerHTML = '';
+                    for (let i = 0; i < 16; i++) {
+                        let selector = Math.floor(Math.random() * 50);
+                        resultsField.innerHTML += `
+                    <div class="artist card">
+                    <img src=${musicArr[selector].artworkUrl100}>
+                    <p class='song-info'>${musicArr[selector].artistName} </br> ${musicArr[selector].trackName}</p>
+                    <button class='play' id='${musicArr[selector].trackId}' value='${musicArr[selector].previewUrl}'>Play Me!</button>
+                    </div>
+                    `;
+                    }
+                }
+            });
+    },
+    false
+);
 
 resultsField.addEventListener('click', (e) => {
     console.log(e.target.value);
