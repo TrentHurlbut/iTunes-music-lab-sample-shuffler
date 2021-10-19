@@ -1,13 +1,53 @@
+html body {
+    color: #ff6978;
+    background-color: #6d435a;
+}
+
 #results-field {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-}
-
-div {
     margin: auto;
+    width: 75%;
 }
 
 .discover-box {
     width: 50%;
     justify-items: center;
+    margin: auto;
+}
+
+.artist {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    width: 250px;
+    height: 250px;
+    margin: 20px 20px 20px 20px !important;
+    padding: 30px;
+    background-color: #f0f7f4;
+}
+
+.artist * {
+    text-align: center;
+    margin: 50%;
+    float: none;
+}
+
+.results-box {
+    margin: 20px;
+}
+
+.results-box * {
+    margin: auto;
+    justify-content: center;
+}
+
+.song-info {
+    justify-self: center;
+    align-self: center;
+    padding: 10px 10px 10px 10px;
+}
+
+#discover-text {
+    background-color: #f0f7f4;
 }

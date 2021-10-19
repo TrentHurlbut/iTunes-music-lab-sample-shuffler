@@ -22,8 +22,7 @@ searchButton.addEventListener('click', () => {
                 resultsField.innerHTML += `
                 <div class="artist card">
                 <img src=${musicArr[selector].artworkUrl100}>
-                <span class='song-info'>${musicArr[selector].artistName}</span>
-                <span class='song-info'>${musicArr[selector].trackName}</span>
+                <p class='song-info'>${musicArr[selector].artistName} </br> ${musicArr[selector].trackName}</p>
                 <button class='play' id='${musicArr[selector].trackId}' value='${musicArr[selector].previewUrl}'>Play Me!</button>
                 </div>
                 `;
