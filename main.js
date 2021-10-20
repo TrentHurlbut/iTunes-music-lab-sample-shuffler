@@ -36,7 +36,7 @@ document.getElementById('discovery-form').addEventListener(
                                 resultsField.innerHTML += `
                             <div class="artist card">
                             <img src=${musicArr[selector].artworkUrl100}>
-                            <p class='song-info'>${musicArr[selector].artistName} </br> ${musicArr[selector].collectionName} </br> ${musicArr[selector].trackName}</p>
+                            <p class='song-info'>${musicArr[selector].artistName} </br> ${musicArr[selector].collectionName} </br> <strong>${musicArr[selector].trackName}</strong></p>
                             <button class='play' id='${musicArr[selector].trackId}' value='${musicArr[selector].previewUrl}'>Play Me!</button>
                             </div>
                             `;
@@ -48,7 +48,7 @@ document.getElementById('discovery-form').addEventListener(
                                 resultsField.innerHTML += `
                             <div class="artist card">
                             <img src=${musicArr[selector].artworkUrl100}>
-                            <p class='song-info'>${musicArr[selector].artistName} </br> ${musicArr[selector].trackName}</p>
+                            <p class='song-info'>${musicArr[selector].artistName} </br> ${musicArr[selector].collectionName} </br> <strong>${musicArr[selector].trackName}</strong></p>
                             <button class='play' id='${musicArr[selector].trackId}' value='${musicArr[selector].previewUrl}'>Play Me!</button>
                             </div>
                             `;
@@ -76,7 +76,7 @@ document.getElementById('discovery-form').addEventListener(
                                 resultsField.innerHTML += `
                             <div class="artist card">
                             <img src=${musicArr[selector].artworkUrl100}>
-                            <p class='song-info'>${musicArr[selector].artistName} </br> ${musicArr[selector].collectionName} </br> ${musicArr[selector].trackName}</p>
+                            <p class='song-info'>${musicArr[selector].artistName} </br> ${musicArr[selector].collectionName} </br> <strong>${musicArr[selector].trackName}</strong></p>
                             <button class='play' id='${musicArr[selector].trackId}' value='${musicArr[selector].previewUrl}'>Play Me!</button>
                             </div>
                             `;
@@ -88,7 +88,7 @@ document.getElementById('discovery-form').addEventListener(
                                 resultsField.innerHTML += `
                             <div class="artist card">
                             <img src=${musicArr[selector].artworkUrl100}>
-                            <p class='song-info'>${musicArr[selector].artistName} </br> ${musicArr[selector].trackName}</p>
+                            <p class='song-info'>${musicArr[selector].artistName} </br> ${musicArr[selector].collectionName} </br> <strong>${musicArr[selector].trackName}</strong></p>
                             <button class='play' id='${musicArr[selector].trackId}' value='${musicArr[selector].previewUrl}'>Play Me!</button>
                             </div>
                             `;
@@ -116,7 +116,7 @@ document.getElementById('discovery-form').addEventListener(
                                 resultsField.innerHTML += `
                             <div class="artist card">
                             <img src=${musicArr[selector].artworkUrl100}>
-                            <p class='song-info'>${musicArr[selector].artistName} </br> ${musicArr[selector].collectionName} </br> ${musicArr[selector].trackName}</p>
+                            <p class='song-info'>${musicArr[selector].artistName} </br> ${musicArr[selector].collectionName} </br> <strong>${musicArr[selector].trackName}</strong></p>
                             <button class='play' id='${musicArr[selector].trackId}' value='${musicArr[selector].previewUrl}'>Play Me!</button>
                             </div>
                             `;
@@ -128,7 +128,7 @@ document.getElementById('discovery-form').addEventListener(
                                 resultsField.innerHTML += `
                             <div class="artist card">
                             <img src=${musicArr[selector].artworkUrl100}>
-                            <p class='song-info'>${musicArr[selector].artistName} </br> ${musicArr[selector].trackName}</p>
+                            <p class='song-info'>${musicArr[selector].artistName} </br> ${musicArr[selector].collectionName} </br> <strong>${musicArr[selector].trackName}</strong></p>
                             <button class='play' id='${musicArr[selector].trackId}' value='${musicArr[selector].previewUrl}'>Play Me!</button>
                             </div>
                             `;
