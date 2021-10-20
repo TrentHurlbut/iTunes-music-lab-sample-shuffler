@@ -55,3 +55,12 @@ html body {
 #discover-text {
     background-color: #f0f7f4;
 }
+
+#page-header {
+    font-size: 60px !important;
+}
+
+select,
+input {
+    margin: 0px 0px 20px 0px;
+}
