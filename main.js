@@ -40,11 +40,13 @@ document.getElementById('discovery-form').addEventListener(
                         } else {
                             //16 randomly generated song cards are populated on the DOM if there is currently none displayed.
                             if (resultsField.innerHTML === '') {
-                                for (let i = 0; i < 16; i++) {
-                                    let selector = Math.floor(
-                                        Math.random() * 50
-                                    );
-                                    resultsField.innerHTML += `
+                                //Occasionally results won't load and will throw a 404 error, this try-catches with a notification to the user.
+                                try {
+                                    for (let i = 0; i < 16; i++) {
+                                        let selector = Math.floor(
+                                            Math.random() * 50
+                                        );
+                                        resultsField.innerHTML += `
                             <div class="artist card">
                             <img src=${musicArr[selector].artworkUrl100}>
                             <p class='song-info'><strong>Artist: </strong>${musicArr[selector].artistName} </br> <strong>Album: </strong>${musicArr[selector].collectionName}</p>
@@ -52,15 +54,21 @@ document.getElementById('discovery-form').addEventListener(
                             <button class='play' id='${musicArr[selector].trackId}' value='${musicArr[selector].previewUrl}'>Play Me!</button>
                             </div>
                             `;
+                                    }
+                                } catch (error) {
+                                    confirm(
+                                        'One or more elements failed to load.'
+                                    );
                                 }
                             } else {
                                 //If there are already songs, the DOM resets the innerHTML of the 'resultsField' and repopulates.
                                 resultsField.innerHTML = '';
-                                for (let i = 0; i < 16; i++) {
-                                    let selector = Math.floor(
-                                        Math.random() * 50
-                                    );
-                                    resultsField.innerHTML += `
+                                try {
+                                    for (let i = 0; i < 16; i++) {
+                                        let selector = Math.floor(
+                                            Math.random() * 50
+                                        );
+                                        resultsField.innerHTML += `
                             <div class="artist card">
                             <img src=${musicArr[selector].artworkUrl100}>
                             <p class='song-info'><strong>Artist: </strong>${musicArr[selector].artistName} </br> <strong>Album: </strong>${musicArr[selector].collectionName}</p>
@@ -68,6 +76,11 @@ document.getElementById('discovery-form').addEventListener(
                             <button class='play' id='${musicArr[selector].trackId}' value='${musicArr[selector].previewUrl}'>Play Me!</button>
                             </div>
                             `;
+                                    }
+                                } catch (error) {
+                                    confirm(
+                                        'One or more elements failed to load.'
+                                    );
                                 }
                             }
                         }
@@ -89,31 +102,39 @@ document.getElementById('discovery-form').addEventListener(
                     .then((data) => {
                         let musicArr = data.results;
                         if (resultsField.innerHTML === '') {
-                            for (let i = 0; i < 4; i++) {
-                                let selector = Math.floor(
-                                    Math.random() * musicArr.length
-                                );
-                                resultsField.innerHTML += `
+                            try {
+                                for (let i = 0; i < 4; i++) {
+                                    let selector = Math.floor(
+                                        Math.random() * musicArr.length
+                                    );
+                                    resultsField.innerHTML += `
                                 <div class="video">
                                 <video controls src='${musicArr[selector].previewUrl}'></video>
                                 <h4 class'video-info'>Artist: ${musicArr[selector].artistName}</h4>
                                 <h4 class'video-info'>Track: ${musicArr[selector].trackName}</h4>
                                 </div>
                             `;
+                                }
+                            } catch (error) {
+                                confirm('One or more elements failed to load.');
                             }
                         } else {
                             resultsField.innerHTML = '';
-                            for (let i = 0; i < 4; i++) {
-                                let selector = Math.floor(
-                                    Math.random() * musicArr.length
-                                );
-                                resultsField.innerHTML += `
+                            try {
+                                for (let i = 0; i < 4; i++) {
+                                    let selector = Math.floor(
+                                        Math.random() * musicArr.length
+                                    );
+                                    resultsField.innerHTML += `
                                 <div class="video">
                                 <video controls src='${musicArr[selector].previewUrl}'></video>
                                 <h4 class'video-info'>Artist: ${musicArr[selector].artistName}</h4>
                                 <h4 class'video-info'>Track: ${musicArr[selector].trackName}</h4>
                                 </div>
                             `;
+                                }
+                            } catch (error) {
+                                confirm('One or more elements failed to load.');
                             }
                         }
                     });
