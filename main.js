@@ -14,6 +14,9 @@ document.getElementById('discovery-form').addEventListener(
         //This prevents the page from refreshing on submission.
         e.preventDefault();
 
+        //Clears the audio sample upon submit, if there is one.
+        playBox.innerHTML = '';
+
         //A variable declaration capturing information in the search field.
         let selectorText = document.getElementById('discovery-text').value;
 
@@ -124,5 +127,5 @@ document.getElementById('discovery-form').addEventListener(
 
 //This allows the user to play a song sample based on which play button they select in the populated resultsField when songs are returned.
 resultsField.addEventListener('click', (e) => {
-    playBox.innerHTML = `<audio id="audio-station" src='${e.target.value}' controls autoplay></audio>`;
+    playBox.innerHTML = `<audio id="audio-station" src='${e.target.value}' controls autoplay>Audio elements are not supported by your browser.</audio>`;
 });
