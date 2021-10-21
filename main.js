@@ -1,25 +1,27 @@
+//VARIABLE DECLARATIONS
+//All of the variables referred to are the elements involved in searching for music and playing them.
 const resultsField = document.getElementById('results-field');
-
 const searchButton = document.getElementById('search');
-
 const playBox = document.getElementById('play-box');
-
 const audioControls = document.getElementById('audio-station');
-
 const playButton = document.getElementById('play-button');
-
 const searchParameter = document.getElementById('music-menu');
 
-console.log(searchParameter.value);
-
+//One event listener which populates the page after the 'Let's Go!' button is clicked or enter is pressed.
 document.getElementById('discovery-form').addEventListener(
     'submit',
     (e) => {
+        //This prevents the page from refreshing on submission.
         e.preventDefault();
 
+        //A variable declaration capturing information in the search field.
         let selectorText = document.getElementById('discovery-text').value;
-        if (searchParameter.value === 'artist') {
+
+        //This will fire when the user selects song as the media form they would like to receive back.
+        if (searchParameter.value === 'song') {
+            //Using try-catch in case any responses outside of the 200 range come back from the server.
             try {
+                //This request is made based on what the user searches and returns songs.
                 fetch(
                     `https://itunes.apple.com/search?media=music&entity=song&term=${selectorText}`
                 )
@@ -30,38 +32,51 @@ document.getElementById('discovery-form').addEventListener(
                     )
                     .then((data) => {
                         let musicArr = data.results;
-                        if (resultsField.innerHTML === '') {
-                            for (let i = 0; i < 16; i++) {
-                                let selector = Math.floor(Math.random() * 50);
-                                resultsField.innerHTML += `
-                            <div class="artist card">
-                            <img src=${musicArr[selector].artworkUrl100}>
-                            <p class='song-info'>${musicArr[selector].artistName} </br> ${musicArr[selector].collectionName} </br> <strong>${musicArr[selector].trackName}</strong></p>
-                            <button class='play' id='${musicArr[selector].trackId}' value='${musicArr[selector].previewUrl}'>Play Me!</button>
-                            </div>
-                            `;
-                            }
+                        if (musicArr <= 0) {
+                            alert('Your search returned no results!');
                         } else {
-                            resultsField.innerHTML = '';
-                            for (let i = 0; i < 16; i++) {
-                                let selector = Math.floor(Math.random() * 50);
-                                resultsField.innerHTML += `
+                            //16 randomly generated song cards are populated on the DOM if there is currently none displayed.
+                            if (resultsField.innerHTML === '') {
+                                for (let i = 0; i < 16; i++) {
+                                    let selector = Math.floor(
+                                        Math.random() * 50
+                                    );
+                                    resultsField.innerHTML += `
                             <div class="artist card">
                             <img src=${musicArr[selector].artworkUrl100}>
-                            <p class='song-info'>${musicArr[selector].artistName} </br> ${musicArr[selector].collectionName} </br> <strong>${musicArr[selector].trackName}</strong></p>
+                            <p class='song-info'><strong>Artist: </strong>${musicArr[selector].artistName} </br> <strong>Album: </strong>${musicArr[selector].collectionName}</p>
+                            <h3>${musicArr[selector].trackName}</h3>
                             <button class='play' id='${musicArr[selector].trackId}' value='${musicArr[selector].previewUrl}'>Play Me!</button>
                             </div>
                             `;
+                                }
+                            } else {
+                                //If there are already songs, the DOM resets the innerHTML of the 'resultsField' and repopulates.
+                                resultsField.innerHTML = '';
+                                for (let i = 0; i < 16; i++) {
+                                    let selector = Math.floor(
+                                        Math.random() * 50
+                                    );
+                                    resultsField.innerHTML += `
+                            <div class="artist card">
+                            <img src=${musicArr[selector].artworkUrl100}>
+                            <p class='song-info'><strong>Artist: </strong>${musicArr[selector].artistName} </br> <strong>Album: </strong>${musicArr[selector].collectionName}</p>
+                            <h3>${musicArr[selector].trackName}</h3>
+                            <button class='play' id='${musicArr[selector].trackId}' value='${musicArr[selector].previewUrl}'>Play Me!</button>
+                            </div>
+                            `;
+                                }
                             }
                         }
                     });
             } catch (error) {
                 alert("Your search didn't work! Try again.");
             }
-        } else if (searchParameter.value === 'song') {
+            //This is the music video fetch request. Functions similarly to the songs request above, but returns videos.
+        } else if (searchParameter.value === 'music-video') {
             try {
                 fetch(
-                    `https://itunes.apple.com/search?media=music&entity=song&term=${selectorText}`
+                    `https://itunes.apple.com/search?media=musicVideo&entity=musicVideo&term=${selectorText}`
                 )
                     .then((response) =>
                         response.ok
@@ -71,66 +86,30 @@ document.getElementById('discovery-form').addEventListener(
                     .then((data) => {
                         let musicArr = data.results;
                         if (resultsField.innerHTML === '') {
-                            for (let i = 0; i < 16; i++) {
-                                let selector = Math.floor(Math.random() * 50);
+                            for (let i = 0; i < 4; i++) {
+                                let selector = Math.floor(
+                                    Math.random() * musicArr.length
+                                );
                                 resultsField.innerHTML += `
-                            <div class="artist card">
-                            <img src=${musicArr[selector].artworkUrl100}>
-                            <p class='song-info'>${musicArr[selector].artistName} </br> ${musicArr[selector].collectionName} </br> <strong>${musicArr[selector].trackName}</strong></p>
-                            <button class='play' id='${musicArr[selector].trackId}' value='${musicArr[selector].previewUrl}'>Play Me!</button>
-                            </div>
+                                <div class="video">
+                                <video controls src='${musicArr[selector].previewUrl}'></video>
+                                <h4 class'video-info'>Artist: ${musicArr[selector].artistName}</h4>
+                                <h4 class'video-info'>Track: ${musicArr[selector].trackName}</h4>
+                                </div>
                             `;
                             }
                         } else {
                             resultsField.innerHTML = '';
-                            for (let i = 0; i < 16; i++) {
-                                let selector = Math.floor(Math.random() * 50);
+                            for (let i = 0; i < 4; i++) {
+                                let selector = Math.floor(
+                                    Math.random() * musicArr.length
+                                );
                                 resultsField.innerHTML += `
-                            <div class="artist card">
-                            <img src=${musicArr[selector].artworkUrl100}>
-                            <p class='song-info'>${musicArr[selector].artistName} </br> ${musicArr[selector].collectionName} </br> <strong>${musicArr[selector].trackName}</strong></p>
-                            <button class='play' id='${musicArr[selector].trackId}' value='${musicArr[selector].previewUrl}'>Play Me!</button>
-                            </div>
-                            `;
-                            }
-                        }
-                    });
-            } catch (error) {
-                alert("Your search didn't work! Try again.");
-            }
-        } else if (searchParameter.value === 'album') {
-            try {
-                fetch(
-                    `https://itunes.apple.com/search?media=music&entity=song&term=${selectorText}`
-                )
-                    .then((response) =>
-                        response.ok
-                            ? response.json()
-                            : alert(response.statusText)
-                    )
-                    .then((data) => {
-                        let musicArr = data.results;
-                        if (resultsField.innerHTML === '') {
-                            for (let i = 0; i < 16; i++) {
-                                let selector = Math.floor(Math.random() * 50);
-                                resultsField.innerHTML += `
-                            <div class="artist card">
-                            <img src=${musicArr[selector].artworkUrl100}>
-                            <p class='song-info'>${musicArr[selector].artistName} </br> ${musicArr[selector].collectionName} </br> <strong>${musicArr[selector].trackName}</strong></p>
-                            <button class='play' id='${musicArr[selector].trackId}' value='${musicArr[selector].previewUrl}'>Play Me!</button>
-                            </div>
-                            `;
-                            }
-                        } else {
-                            resultsField.innerHTML = '';
-                            for (let i = 0; i < 16; i++) {
-                                let selector = Math.floor(Math.random() * 50);
-                                resultsField.innerHTML += `
-                            <div class="artist card">
-                            <img src=${musicArr[selector].artworkUrl100}>
-                            <p class='song-info'>${musicArr[selector].artistName} </br> ${musicArr[selector].collectionName} </br> <strong>${musicArr[selector].trackName}</strong></p>
-                            <button class='play' id='${musicArr[selector].trackId}' value='${musicArr[selector].previewUrl}'>Play Me!</button>
-                            </div>
+                                <div class="video">
+                                <video controls src='${musicArr[selector].previewUrl}'></video>
+                                <h4 class'video-info'>Artist: ${musicArr[selector].artistName}</h4>
+                                <h4 class'video-info'>Track: ${musicArr[selector].trackName}</h4>
+                                </div>
                             `;
                             }
                         }
@@ -143,7 +122,7 @@ document.getElementById('discovery-form').addEventListener(
     false
 );
 
+//This allows the user to play a song sample based on which play button they select in the populated resultsField when songs are returned.
 resultsField.addEventListener('click', (e) => {
-    console.log(e.target.value);
     playBox.innerHTML = `<audio id="audio-station" src='${e.target.value}' controls autoplay></audio>`;
 });

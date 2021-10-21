@@ -64,3 +64,21 @@ select,
 input {
     margin: 0px 0px 20px 0px;
 }
+
+button {
+    background-color: #70977f !important;
+}
+
+.video {
+    margin: 20px;
+}
+
+.video-info {
+    text-align: center;
+    background-color: transparent !important;
+}
+
+video {
+    max-width: 400px;
+    border: 3px #f0f7f4 solid;
+}
