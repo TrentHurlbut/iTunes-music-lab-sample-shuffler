@@ -22,13 +22,14 @@ document.getElementById('discovery-form').addEventListener(
 
         //This will fire when the user selects song as the media form they would like to receive back.
         if (searchParameter.value === 'song') {
-            //Using try-catch in case any responses outside of the 200 range come back from the server.
+            //Using try-catch in case any responses generate an error.
             try {
                 //This request is made based on what the user searches and returns songs.
                 fetch(
                     `https://itunes.apple.com/search?media=music&entity=song&term=${selectorText}`
                 )
                     .then((response) =>
+                        //This checks to see if the response is within the 200 range. If it is not, the user is alerted to the status received from the request.
                         response.ok
                             ? response.json()
                             : alert(response.statusText)
